@@ -1,0 +1,19 @@
+<?php
+ ob_start();
+ if(!session_start()){
+    session_start();
+ }
+ error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
+ global $dbc;
+ $host = "localhost";
+ $db_name ="smacrs-mse2015";
+ $db_user = "root";
+ $db_password = "12345";
+ try {
+  $dbc = new PDO("mysql:host=$host;dbname=$db_name", $db_user, $db_password);
+  echo "Connected successfully with database";
+ }
+ catch(PDOException $exception) {
+    die("Connection failed: ".$exception->getMessage());
+ }
+?>
