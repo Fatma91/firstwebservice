@@ -52,6 +52,31 @@
 			echo $all_languages_Json;
 			break;
                     
+                case 'exams':
+			if((isset($_POST["inst_id"]))&&(isset($_POST["acyear_id"]))&&(isset($_POST["dep_id"]))&&(isset($_POST["dep_year_id"]))&&(isset($_POST["group_id"]))&&(isset($_POST["term"]))&&(isset($_POST["language_id"])))
+                        {
+                            $instID = $_POST["inst_id"];
+                            $acyearID = $_POST["acyear_id"];
+                            $depID = $_POST["dep_id"];
+                            $depYearID = $_POST["dep_year_id"];
+                            $groupID = $_POST["group_id"];
+                            $term = $_POST["term"];
+                            $languageID = $_POST["language_id"];
+                            $returnExams = getData::getExams($instID,$acyearID,$depID,$depYearID,$groupID,$term,$languageID);
+                            $exams_Json = json_encode($returnExams);
+                            echo $exams_Json;
+			} 
+			break;    
+                case 'teachers':
+			if(isset($_POST["inst_id"]))
+                        {
+                            $instID = $_POST["inst_id"];
+                            $teachers = getData::getTeachers($instID);
+                            $teachers_Json = json_encode($teachers);
+                            echo $teachers_Json;
+			} 
+			break;
+                    
 		default :
 			echo 'No case selected';
 			break;
